@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://b6wq7uq3tgbsq"]
+
+[ext_resource type="Script" uid="uid://ccvfn6mqtuy1n" path="res://movement_manager.gd" id="1_onrkg"]
+[ext_resource type="PackedScene" uid="uid://bvnj27ao428w6" path="res://Erika Archer.fbx" id="2_i3pqv"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hqtel"]
+
+[node name="player" type="CharacterBody3D"]
+script = ExtResource("1_onrkg")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.84, 0, 0, 0, 0.84, 0, 0, 0, 0.84, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_hqtel")
+
+[node name="Erika Archer" parent="." instance=ExtResource("2_i3pqv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.79820466, 0)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-1, 0, -8.742278e-08, -2.262668e-08, 0.9659259, 0.25881907, 8.444392e-08, 0.25881907, -0.9659258, 0, 0.73771083, -1.5922983)
