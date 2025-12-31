@@ -1,4 +1,5 @@
 extends CharacterBody3D
+@onready var camera_3d: Camera3D = $Camera3D
 
 
 const SPEED = 5.0
@@ -15,9 +16,9 @@ func _physics_process(delta: float) -> void:
 		velocity.y = JUMP_VELOCITY
 
 	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir := Input.get_vector("right", "left", "backward", "forward")
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	
 	if direction:
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED
@@ -26,3 +27,6 @@ func _physics_process(delta: float) -> void:
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
 	move_and_slide()
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseMotion && Input.is_action_pressed("Orbit_Unlock"):
+		pass
