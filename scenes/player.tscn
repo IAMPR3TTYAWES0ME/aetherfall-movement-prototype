@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://b6wq7uq3tgbsq"]
+
+[ext_resource type="Script" uid="uid://ccvfn6mqtuy1n" path="res://movement_manager.gd" id="1_onrkg"]
+[ext_resource type="PackedScene" uid="uid://bvnj27ao428w6" path="res://models/Erika Archer.fbx" id="2_i3pqv"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hqtel"]
+
+[node name="player" type="CharacterBody3D"]
+collision_layer = 2
+script = ExtResource("1_onrkg")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.84, 0, 0, 0, 0.84, 0, 0, 0, 0.84, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_hqtel")
+
+[node name="Erika Archer" parent="." instance=ExtResource("2_i3pqv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.79820466, 0)
+
+[node name="CameraPivot" type="Node3D" parent="Erika Archer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.305, 0)
+
+[node name="SpringArm3D" type="SpringArm3D" parent="Erika Archer/CameraPivot"]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, -0.71458495, 0.27927542)
+
+[node name="Camera3D" type="Camera3D" parent="Erika Archer/CameraPivot/SpringArm3D"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
