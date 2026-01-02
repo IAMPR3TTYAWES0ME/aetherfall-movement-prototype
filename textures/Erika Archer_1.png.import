@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dh5rw4kb1xegk"
-path.s3tc="res://.godot/imported/Erika Archer_3.png-aa6f9d3e84f4844a90ab43271398c8b2.s3tc.ctex"
+uid="uid://0f0qgli08rap"
+path.s3tc="res://.godot/imported/Erika Archer_1.png-3533e5b3c4f8926a53f523dac68aa471.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "82b6d285561a6ac2ec1c4c376e8a8e6e"
+"md5": "e73b125a4b9ab8c49324d46b064fc830"
 }
 
 [deps]
 
-source_file="res://Erika Archer_3.png"
-dest_files=["res://.godot/imported/Erika Archer_3.png-aa6f9d3e84f4844a90ab43271398c8b2.s3tc.ctex"]
+source_file="res://textures/Erika Archer_1.png"
+dest_files=["res://.godot/imported/Erika Archer_1.png-3533e5b3c4f8926a53f523dac68aa471.s3tc.ctex"]
 
 [params]
 
@@ -30,7 +30,7 @@ compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=1
-roughness/src_normal="res://Erika Archer_3.png"
+roughness/src_normal="res://Erika Archer_1.png"
 process/channel_remap/red=0
 process/channel_remap/green=1
 process/channel_remap/blue=2

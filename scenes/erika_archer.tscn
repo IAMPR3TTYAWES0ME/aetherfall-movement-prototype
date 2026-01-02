@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://g2u8ncp6iwqq"]
+
+[ext_resource type="PackedScene" uid="uid://bvnj27ao428w6" path="res://models/Erika Archer.fbx" id="1_l7621"]
+
+[node name="Erika Archer" instance=ExtResource("1_l7621")]

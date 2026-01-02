@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bsw68kno8blpa"
-path.s3tc="res://.godot/imported/Erika Archer_4.png-18539555bf58d3d541d9b3f90e37f164.s3tc.ctex"
+uid="uid://bkuf5w3s3w2pa"
+path.s3tc="res://.godot/imported/Erika Archer_2.png-56f8f37635692cb6e1920bb9f715d4b1.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "184960f0d258ff8a0ff1cfd091b4b9c5"
+"md5": "a2e7ca28ffa566b1572090f5d694a016"
 }
 
 [deps]
 
-source_file="res://Erika Archer_4.png"
-dest_files=["res://.godot/imported/Erika Archer_4.png-18539555bf58d3d541d9b3f90e37f164.s3tc.ctex"]
+source_file="res://textures/Erika Archer_2.png"
+dest_files=["res://.godot/imported/Erika Archer_2.png-56f8f37635692cb6e1920bb9f715d4b1.s3tc.ctex"]
 
 [params]
 

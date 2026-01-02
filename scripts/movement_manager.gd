@@ -3,6 +3,7 @@ extends CharacterBody3D
 @onready var camera_pivot: Node3D = $"Erika Archer/CameraPivot"
 @onready var spring_arm_3d: SpringArm3D = $"Erika Archer/CameraPivot/SpringArm3D"
 @onready var character: Node3D = $"Erika Archer"
+@onready var walk: AnimationPlayer = $"Erika Archer/AnimationPlayer2"
 
 
 const SPEED = 5.0
@@ -28,6 +29,7 @@ func _physics_process(delta: float) -> void:
 	
 	# Get the input direction and handle the movement/deceleration.
 	var input_dir := Input.get_vector("right", "left", "backward", "forward")
+	walk.play("walk")
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
 	if direction:
