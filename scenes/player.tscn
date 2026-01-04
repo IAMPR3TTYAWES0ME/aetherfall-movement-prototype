@@ -1,9 +1,57 @@
-[gd_scene load_steps=10 format=3 uid="uid://b6wq7uq3tgbsq"]
+[gd_scene load_steps=21 format=3 uid="uid://b6wq7uq3tgbsq"]
 
 [ext_resource type="Script" uid="uid://ccvfn6mqtuy1n" path="res://scripts/movement_manager.gd" id="1_onrkg"]
 [ext_resource type="PackedScene" uid="uid://bvnj27ao428w6" path="res://models/Erika Archer.fbx" id="2_i3pqv"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hqtel"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_g2els"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qhqgy"]
+animation = &"jump"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dqkch"]
+animation = &"walk"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qlg0r"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tuyoq"]
+switch_mode = 1
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fjrip"]
+switch_mode = 1
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_smehm"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ur7pv"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_g2els"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qhqgy"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_ujl30"]
+states/End/position = Vector2(1041, 126)
+states/Start/position = Vector2(182, 100)
+states/idle/node = SubResource("AnimationNodeAnimation_g2els")
+states/idle/position = Vector2(356, 103)
+states/jump/node = SubResource("AnimationNodeAnimation_qhqgy")
+states/jump/position = Vector2(543, 101)
+states/walk/node = SubResource("AnimationNodeAnimation_dqkch")
+states/walk/position = Vector2(435, 218)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_qlg0r"), "idle", "jump", SubResource("AnimationNodeStateMachineTransition_tuyoq"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_fjrip"), "walk", "jump", SubResource("AnimationNodeStateMachineTransition_smehm"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_ur7pv"), "jump", "idle", SubResource("AnimationNodeStateMachineTransition_g2els"), "jump", "walk", SubResource("AnimationNodeStateMachineTransition_qhqgy")]
+graph_offset = Vector2(-33, 44)
 
 [sub_resource type="Animation" id="Animation_qhqgy"]
 resource_name = "walking"
@@ -3688,6 +3736,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.305, 0)
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, -0.71458495, 0.27927542)
 
 [node name="Camera3D" type="Camera3D" parent="Erika Archer/CameraPivot/SpringArm3D"]
+
+[node name="AnimationTree" type="AnimationTree" parent="Erika Archer"]
+tree_root = SubResource("AnimationNodeStateMachine_ujl30")
+anim_player = NodePath("../animation_handler")
 
 [node name="animation_handler" type="AnimationPlayer" parent="Erika Archer"]
 libraries = {

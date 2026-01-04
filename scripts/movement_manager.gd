@@ -4,6 +4,8 @@ extends CharacterBody3D
 @onready var spring_arm_3d: SpringArm3D = $"Erika Archer/CameraPivot/SpringArm3D"
 @onready var character: Node3D = $"Erika Archer"
 @onready var animation_handler: AnimationPlayer = $"Erika Archer/animation_handler"
+@onready var anim_tree: AnimationTree = $"Erika Archer/AnimationTree"
+@onready var anim_state = anim_tree.get("parameters/playback")
 
 
 
@@ -23,7 +25,8 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("Jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 		is_jumping = true
-		
+	
+	
 	# Handle zoom.
 	if Input.is_action_just_pressed("scroll_back"):
 		spring_arm_3d.spring_length += 0.1
@@ -74,5 +77,9 @@ func _input(event: InputEvent) -> void:
 		pitch -= _mouse_y * mouse_sensitivity
 		pitch = clamp(pitch, deg_to_rad(-60), deg_to_rad(60))
 		spring_arm_3d.rotation.x = pitch
-		
+
+#func set_anim(name: String) -> void:
+	#if anim_state.get_current_node() != name:
+		#anim_state.travel(name)
+		#
 		
