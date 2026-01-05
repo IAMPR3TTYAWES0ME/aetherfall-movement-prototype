@@ -5,7 +5,6 @@ extends CharacterBody3D
 @onready var character: Node3D = $"Erika Archer"
 @onready var animation_handler: AnimationPlayer = $"Erika Archer/animation_handler"
 @onready var anim_tree: AnimationTree = $"Erika Archer/AnimationTree"
-@onready var anim_state = anim_tree.get("parameters/playback")
 
 
 
@@ -16,7 +15,14 @@ var pitch := 0.0
 var plrRotation := 0.0
 var is_walking := false
 var is_jumping := false
+var playback: AnimationNodeStateMachinePlayback
+
+func _ready() -> void:
+	anim_tree.active = true
+	playback = anim_tree.get("parameters/playback") as AnimationNodeStateMachinePlayback
+
 func _physics_process(delta: float) -> void:
+	
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
@@ -36,10 +42,8 @@ func _physics_process(delta: float) -> void:
 	spring_arm_3d.spring_length = lock
 	
 	# Get the input direction and handle the movement/deceleration.
-	var input_dir := Input.get_vector("right", "left", "backward", "forward")
+	var input_dir := Input.get_vector("left", "right", "forward", "backward")
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	
-	
 	
 	if direction:
 		velocity.x = direction.x * SPEED
@@ -49,16 +53,8 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 		is_walking = false
-	
-	if not is_on_floor():
-		if animation_handler.current_animation != "jump":
-			animation_handler.play("jump")
-	elif is_walking:
-		if animation_handler.current_animation != "walk":
-			animation_handler.play("walk")
-	else:
-		if animation_handler.current_animation != "idle":
-			animation_handler.play("idle")
+	_update_animation(input_dir)
+
 	
 	var cam := Input.get_vector("contollerCamera_L", "contollerCamera_R", "contollerCamera_F", "contollerCamera_B")
 	if cam.length() > 0.15:
@@ -68,6 +64,7 @@ func _physics_process(delta: float) -> void:
 		spring_arm_3d.rotation.x = pitch
 
 	move_and_slide()
+	
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion && Input.is_action_pressed("Orbit_Unlock"):
 		var _mouse_x = event.relative.x
@@ -77,9 +74,20 @@ func _input(event: InputEvent) -> void:
 		pitch -= _mouse_y * mouse_sensitivity
 		pitch = clamp(pitch, deg_to_rad(-60), deg_to_rad(60))
 		spring_arm_3d.rotation.x = pitch
-
-#func set_anim(name: String) -> void:
-	#if anim_state.get_current_node() != name:
-		#anim_state.travel(name)
-		#
 		
+var last_target: StringName = &""
+
+func _update_animation(input_dir: Vector2) -> void:
+	var target: StringName
+
+	if not is_on_floor():
+		target = &"jump"
+	elif input_dir.length() > 0.1:
+		target = &"walk"
+	else:
+		target = &"idle"
+
+	# Only send travel if the target changed since last frame
+	if target != last_target:
+		last_target = target
+		playback.travel(target)

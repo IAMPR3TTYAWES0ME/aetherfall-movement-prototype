@@ -43,7 +43,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.016823769, -0.02, 0.024687
 shape = SubResource("BoxShape3D_sxh6d")
 
 [node name="player" parent="." instance=ExtResource("1_sxh6d")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.45280552, 0.9098375, -2.3639486)
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0.45280552, 0.9098375, -2.3639486)
 
 [node name="StaticBody3D2" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.2468987, 0)
