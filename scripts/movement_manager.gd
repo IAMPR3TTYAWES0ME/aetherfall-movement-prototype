@@ -19,6 +19,7 @@ var running := false
 var zoom = 0
 var death_height = -10
 var con_scroll_enabled := false
+var idle_is_active = true
 
 func _ready() -> void:
 	anim_tree.active = true
@@ -32,7 +33,7 @@ func _physics_process(delta: float) -> void:
 	# Handle jump.
 	if Input.is_action_just_pressed("Jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
-		
+
 	if Input.is_action_pressed("sprint"):
 		running = true
 	elif Input.is_action_just_released("sprint"):
@@ -71,6 +72,7 @@ func _physics_process(delta: float) -> void:
 
 		velocity.x = move_dir.x * SPEED
 		velocity.z = move_dir.z * SPEED
+		idle_is_active = false
 
 		# Face the direction you're actually moving
 		var target_yaw := atan2(-move_dir.x, -move_dir.z)
@@ -78,6 +80,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0.0, SPEED)
 		velocity.z = move_toward(velocity.z, 0.0, SPEED)
+		idle_is_active = true
 
 	# animation handler
 	_update_animation(input_dir)
@@ -128,10 +131,10 @@ func _update_animation(input_dir: Vector2) -> void:
 	elif input_dir.length() > 0.1 && running == true:
 		target = &"run"
 		SPEED = 7.5
-	elif input_dir.length() > 0.1 && running == false:
+	elif input_dir.length() > 0.1 && running == false && is_on_floor():
 		target = &"walk"
 		SPEED = 5.0
-	else:
+	elif is_on_floor() and idle_is_active == true:
 		target = &"idle"
 	
 	if input_dir.length() < 0.1:
