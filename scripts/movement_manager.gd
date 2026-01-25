@@ -140,7 +140,6 @@ func _update_animation(input_dir: Vector2) -> void:
 	if input_dir.length() < 0.1:
 		running = false
 
-	# Only send travel if the target changed since last frame
 	if target != last_target:
 		last_target = target
 		playback.travel(target)
