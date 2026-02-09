@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bb4100j381syh"
-path="res://.godot/imported/Jumping Up.fbx-26c3adb653bd7f049b085f75f8b991d4.scn"
+uid="uid://csbog3kct512u"
+path="res://.godot/imported/man.fbx-0b32202b4dc675b134bbe590408e0fb9.scn"
 
 [deps]
 
-source_file="res://temporary/Jumping Up.fbx"
-dest_files=["res://.godot/imported/Jumping Up.fbx-26c3adb653bd7f049b085f75f8b991d4.scn"]
+source_file="res://temporary/man.fbx"
+dest_files=["res://.godot/imported/man.fbx-0b32202b4dc675b134bbe590408e0fb9.scn"]
 
 [params]
 
